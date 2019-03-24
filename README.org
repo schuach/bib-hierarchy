@@ -1,0 +1,34 @@
+#+TITLE: Anzeige von bibliografischen Hierarchien aus (nicht in) Alma
+#+NIKOLA_SLUG: bib-hierarchy
+#+AUTHOR: Stefan Schuh
+#+EMAIL: stefan.schuh@uni-graz.at
+#+DATE: 2018-08-03 12:01
+#+DESCRIPTION:
+#+KEYWORDS:
+#+OPTIONS: H:4 num:nil toc:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil
+#+OPTIONS: author:nil creator:nil email:nil date:t
+#+MACRO: teaser #+RST: .. TEASER_END
+
+* Allgemeines
+Die Anzeige von bibliografischen Hierarchien ist in Alma nicht gut möglich.
+Nachdem die Daten aber da sind, kann man diese Anzeige selbst erstellen, indem
+man sich die MARC-Records über die SRU-Schnittstelle von Alma holt.
+=bib-hierarchy= ist eine Webapplikation, geschrieben in Python (Flask), die
+genau das macht.
+
+* Beschränkungen und mögliche Verbesserungen
+Die Applikation ist noch ein Prototyp. Es gibt noch einige Beschränkungen und
+mögliche Verbesserungen.
+*** Bekannte Beschränkungen
+    - Der Bestand wird bisher nur für die Universitätsbibliothek Graz geprüft.
+      Hier sollte es eine Auswahl für die diversen Bibliotheken geben.
+    - Die SRU-Abfragen sind nicht parallelisiert. Je nach größe der Hierarchie
+      kann es also ziemlich lange dauern, bis das Ergebnis vorliegt.
+*** Mögliche Verbesserungen
+    - Anzeige von Bestandsinformationen wie Standort oder Signatur. Diese
+      Informationen sind auf Netzwerkebene allerdings nicht verfügbar und es
+      müsste eine weitere SRU-Anfrage an die jeweilige IZ gestellt werden.
+    - HTML/CSS verschönern. Ich bin kein Webdesigner und das ist meine erste
+      Webapplikation. Es gibt sicher Leute, die in einer Viertelstunde EyeCandy
+      daraus machen -- solche Menschen sind herzlich eingeladen!
