@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hierarchieanzeige ausgehend von {{ hierarchy[0]["network_id"] }}</h1>
+        <h2>{{ hierarchy[0]["title"] }}</h2>
+        <p>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ hierarchy[0]["network_id"] }}" target="_blank">{{ hierarchy[0]["network_id"] }}</a> </p>
+        <p>{{ number_of_deps }} abhängige Datensätze:</p>
+        <table>
+            {% for rec in hierarchy[1:] %}
+                <tr class="start_entry">
+                    <td rowspan="3">{{ rec["numbering"] }}<br/>
+                        {% if rec["dep_type"] == "MTM" %}
+                            <a href="{{ url_for("hierarchy", acnr=rec["network_id"]) }}" target="_blank">{{ rec["dep_type"] }}</a>
+                        {% else %}
+                            {{ rec["dep_type"] }}
+                        {% endif %}
+                    </td>
+                    <td colspan="2">{{ rec["title"] }}</td>
+                </tr>
+                <tr>
+                    <td>Ausgabebezeichnung: {% if rec["edition"] %} {{ rec["edition"] }} {% else %} --- {% endif %}</td>
+                    <td>Erscheinungsdatum: {{ rec["date"] }}</td>
+                </tr>
+                <tr class="end_entry">
+                    <td>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ rec["network_id"] }}" target="_blank">{{ rec["network_id"] }}</a></td>
+                    <td>Lokaler Bestand vorhanden: {% if rec["has_holdings"] %} JA {% else %} NEIN {% endif %}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+{% endblock %}

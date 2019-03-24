@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Bitte AC-Nummer des Kopfsatzes eingeben</h1>
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.acnr.label }}<br/>
+            {{ form.acnr(size=12) }}<br/>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}
