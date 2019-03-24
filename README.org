@@ -29,6 +29,5 @@ mögliche Verbesserungen.
     - Anzeige von Bestandsinformationen wie Standort oder Signatur. Diese
       Informationen sind auf Netzwerkebene allerdings nicht verfügbar und es
       müsste eine weitere SRU-Anfrage an die jeweilige IZ gestellt werden.
-    - HTML/CSS verschönern. Ich bin kein Webdesigner und das ist meine erste
-      Webapplikation. Es gibt sicher Leute, die in einer Viertelstunde EyeCandy
-      daraus machen -- solche Menschen sind herzlich eingeladen!
+    - HTML/CSS verschönern. Es gibt sicher Leute, die in einer Viertelstunde
+      EyeCandy daraus machen können -- nur zu!

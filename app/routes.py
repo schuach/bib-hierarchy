@@ -1,5 +1,5 @@
 from flask import render_template, url_for, redirect, request
-from app import app, obj
+from app import app, bib_hierarchy
 from app.forms import GetACForm
 
 @app.route("/", methods=["GET", "POST"])
@@ -20,7 +20,7 @@ def index():
 @app.route("/hierarchy")
 def hierarchy():
     acnr = request.args["acnr"]
-    hierarchy = obj.BibHierarchy(acnr)
+    hierarchy = bib_hierarchy.BibHierarchy(acnr)
 
     if hierarchy.records is None:
         message = f'Die Suche nach "{acnr}" erbrachte keine Ergebnisse. Haben Sie sich vielleicht vertippt?'
@@ -28,7 +28,7 @@ def hierarchy():
         message = f"{acnr} hat keine abhängigen Datensätze."
     else:
         return render_template("hierarchy.html",
-                               hierarchy=hierarchy.as_list_of_dicts(),
+                               hierarchy=hierarchy.as_list(),
                                number_of_deps=str(len(hierarchy.deps)))
 
     return redirect(url_for("index", message=message))

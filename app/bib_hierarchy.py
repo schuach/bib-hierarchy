@@ -14,8 +14,7 @@ class BibHierarchy (object):
         if self.records:
             self.head, self.deps = self.__build_hierarchy(self.records)
             # bring self.records in the right order after determining it
-            self.records = [self.head] + [dep[3] for dep in self.deps]
-            # TODO make this a variable
+            self.records = [self.head[3]] + [dep[3] for dep in self.deps]
 
     def __get_records(self, acnr):
         """Get all records containing acnr and return a list of pymarc.Record objects."""
@@ -216,7 +215,7 @@ class BibHierarchy (object):
 
         return s
 
-    def as_list_of_dicts(self):
+    def as_list(self):
         """Return the hierarchy in a list. The first Element is the head of the
         hierarchy, the subsequent elements are the dependent records.
 
