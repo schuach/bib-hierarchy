@@ -21,7 +21,7 @@ def index():
 @app.route("/hierarchy")
 def hierarchy():
     acnr = request.args["acnr"]
-    if request.args["institution_code"]:
+    if "institution_code" in request.args:
         institution_code = request.args["institution_code"]
     else:
         institution_code = session["institution_code"]
