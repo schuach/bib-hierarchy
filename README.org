@@ -17,15 +17,51 @@ man sich die MARC-Records über die SRU-Schnittstelle von Alma holt.
 =bib-hierarchy= ist eine Webapplikation, geschrieben in Python (Flask), die
 genau das macht.
 
+* Funktionsweise
+*** Objekt BibHierarchy
+    Herzstück der Applikation ist das Objekt =BibHierarchy=. Bei der
+    Instantiierung desselben holt es sich über SRU von Alma alle Datensätze die im
+    Index =other_system_number= die AC-Nummer des Kopfsatzes haben. Nachdem dieser
+    Index auch die MARC-Felder 773 und 830 umfasst, bekommen wir auf diese Weise
+    auch alle abhängigen Datensätze. Dies passiert durch die Funktion
+    =__get_records(acnr)=.
+
+    Durch die Funktion =__build_hierarchy= wird für jeden einzelnen Datensatz je nach Sachlage aus MARC 773 $$q oder MARC
+    830 $$v die Nummerierung für die Sortierung herangezogen. Zur Sortierung
+    wird das Modul =natsort= verwendet, damit 2 vor 10 sortiert. Die Funktion
+    gibt eine Liste von Tupeln zurück, die die Form =(numbering, year,
+    network_number, pymarc.Record)= haben. Wenn eine Nummerierung vorkommt (z.
+    B. bei Nachauflagen einzelner Bände), ist
+    das zweite Sortierkriterium so das Jahr. Die Netzwerknummer ist immer gut zu
+    haben, weil sie für die BenutzerInnen eine einfache Möglichkeit bietet, den
+    Datensatz im Bibliothekssystem oder im Katalog zu suchen. Der
+    =pymarc.Record= für jeden Datensatz soll auch zur Verfügung stehen, einfach
+    um flexibler für verschiedene Anwendungen oder Darstellungsweisen zu sein.
+
+    Die beiden öffentlichen Methoden =as_string()= und =as_list()= geben die
+    Hierarchie entweder als String-Repräsentation oder als Liste von dictionarys
+    zurück, um weiter verarbeitet werden zu können.
+*** Die Flask-Applikation
+    Um ein Userinterface bieten zu können, das Systemunabhängig und nicht auf
+    die Kommandozeile angewiesen ist, habe ich eine einfache Webapplikation
+    daraus gemacht.
+
+    Die BenutzerInnen geben die AC-Nummer des Kopfsatzes ein und wählen ihre
+    Bibliothek aus. Das Ergebnis wird als HTML-Tabelle präsentiert. Wenn der Typ
+    des Abhängigen Datensatz 'MTM' ist, gibt es die Möglichkeit, sich auch die
+    davon ausgehende Hierarchie anzeigen zu lassen. Damit diese Hierarchie auch
+    wieder für die gleiche Institution angezeigt wird, wurde der
+    Institutionscode eingangs in =Session.institution_code= gespeichert. Es ist
+    aber auch möglich, den Institutionscode als URL-Parameter mitzugeben.
+
 * Beschränkungen und mögliche Verbesserungen
 Die Applikation ist noch ein Prototyp. Es gibt noch einige Beschränkungen und
 mögliche Verbesserungen.
 *** Bekannte Beschränkungen
-    - Der Bestand wird bisher nur für die Universitätsbibliothek Graz geprüft.
-      Hier sollte es eine Auswahl für die diversen Bibliotheken geben.
     - Die SRU-Abfragen sind nicht parallelisiert. Je nach größe der Hierarchie
       kann es also ziemlich lange dauern, bis das Ergebnis vorliegt.
 *** Mögliche Verbesserungen
+    - Die Liste der Bibliotheken erweitern
     - Anzeige von Bestandsinformationen wie Standort oder Signatur. Diese
       Informationen sind auf Netzwerkebene allerdings nicht verfügbar und es
       müsste eine weitere SRU-Anfrage an die jeweilige IZ gestellt werden.
