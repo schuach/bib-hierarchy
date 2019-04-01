@@ -23,7 +23,7 @@
                 </tr>
                 <tr class="end_entry">
                     <td>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ rec["network_id"] }}" target="_blank">{{ rec["network_id"] }}</a></td>
-                    <td>Lokaler Bestand vorhanden: {% if rec["has_holdings"] %} JA {% else %} NEIN {% endif %}</td>
+                    <td>Lokaler Bestand vorhanden ({{ session["institution_code"] }}): {% if rec["has_holdings"] %} JA {% else %} NEIN {% endif %}</td>
                 </tr>
             {% endfor %}
         </table>

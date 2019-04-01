@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, session
 from app import app, bib_hierarchy
 from app.forms import GetACForm
 
@@ -13,6 +13,7 @@ def index():
     form = GetACForm()
     if form.validate_on_submit():
         acnr = form.acnr.data.strip()
+        session['institution_code'] = form.institution_code.data
         print(acnr)
         return redirect(url_for("hierarchy", acnr=acnr))
     return render_template("index.html", title="Bitte AC-Nummer eingeben", form=form, message=message)
@@ -20,7 +21,7 @@ def index():
 @app.route("/hierarchy")
 def hierarchy():
     acnr = request.args["acnr"]
-    hierarchy = bib_hierarchy.BibHierarchy(acnr)
+    hierarchy = bib_hierarchy.BibHierarchy(acnr, session["institution_code"])
 
     if hierarchy.records is None:
         message = f'Die Suche nach "{acnr}" erbrachte keine Ergebnisse. Haben Sie sich vielleicht vertippt?'
