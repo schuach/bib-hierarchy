@@ -21,7 +21,12 @@ def index():
 @app.route("/hierarchy")
 def hierarchy():
     acnr = request.args["acnr"]
-    hierarchy = bib_hierarchy.BibHierarchy(acnr, session["institution_code"])
+    if request.args["institution_code"]:
+        institution_code = request.args["institution_code"]
+    else:
+        institution_code = session["institution_code"]
+
+    hierarchy = bib_hierarchy.BibHierarchy(acnr, institution_code)
 
     if hierarchy.records is None:
         message = f'Die Suche nach "{acnr}" erbrachte keine Ergebnisse. Haben Sie sich vielleicht vertippt?'

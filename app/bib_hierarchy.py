@@ -68,7 +68,7 @@ class BibHierarchy (object):
 
 
     def __build_hierarchy(self, record_list):
-        """Return a tuple with the head of the hierarchy (pymarc.Records) and the
+        """Return a tuple with the head of the hierarchy and the
         dependent records as a list.
 
         Each element in the List is a tuple (numbering, year, network number,
@@ -104,7 +104,9 @@ class BibHierarchy (object):
 
     # helper functions
     def __check_rectype(self, record):
-        """Check if a record is a TAT or a TUT and return corresponding string."""
+        """Check if a record is a TAT, a TUT or a MTM and return a corresponding
+        string.
+        """
 
         if record.leader[19] == "c":
             rectype = "TAT"
@@ -118,7 +120,7 @@ class BibHierarchy (object):
         return rectype
 
     def __check_holdings(self, record, institution_code):
-        "Return true, if institution has holdings for the record"
+        """Return true, if institution has holdings for the record"""
 
         holdings = False
         for field in record.get_fields("852"):
@@ -128,6 +130,8 @@ class BibHierarchy (object):
         return holdings
 
     def __build_title_string(self, rec, numbering, dep_type):
+        """Return a string of the title with the right ISBD punctuation."""
+
         # if it's a dependent title, get rid of redundant information
         if dep_type == "TAT":
             title = rec["245"].subfields
@@ -157,6 +161,7 @@ class BibHierarchy (object):
                     subfields.append(subfield)
 
             titlestring = "".join(subfields)
+        # else build the title with ISBD-punctuation
         else:
             title = rec["245"].subfields
             subfields = []
