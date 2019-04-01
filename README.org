@@ -51,7 +51,7 @@ genau das macht.
     des Abhängigen Datensatz 'MTM' ist, gibt es die Möglichkeit, sich auch die
     davon ausgehende Hierarchie anzeigen zu lassen. Damit diese Hierarchie auch
     wieder für die gleiche Institution angezeigt wird, wurde der
-    Institutionscode eingangs in =Session.institution_code= gespeichert. Es ist
+    Institutionscode eingangs in =Session['institution_code']= gespeichert. Es ist
     aber auch möglich, den Institutionscode als URL-Parameter mitzugeben.
 
 * Beschränkungen und mögliche Verbesserungen
