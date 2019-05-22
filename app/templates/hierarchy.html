@@ -3,12 +3,14 @@
 {% block content %}
 <h1>Hierarchieanzeige ausgehend von {{ hierarchy[0]["network_id"] }}</h1>
         <h2>{{ hierarchy[0]["title"] }}</h2>
-        <p>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ hierarchy[0]["network_id"] }}" target="_blank">{{ hierarchy[0]["network_id"] }}</a> </p>
+        <!-- <p>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ hierarchy[0]["network_id"] }}" target="_blank">{{ hierarchy[0]["network_id"] }}</a> </p> -->
+        <p>{{ hierarchy[0]["network_id"] }}</p>
         <p>{{ number_of_deps }} abhängige Datensätze:</p>
         <table>
             {% for rec in hierarchy[1:] %}
-                <tr class="start_entry">
-                    <td rowspan="3">{{ rec["numbering"] }}<br/>
+            <tr class="start_entry">
+                <td rowspan="3" style="background-color:{% if rec["has_holdings"] %}#81F781{% else %}#F5A9A9;{% endif %}">
+                    {{ rec["numbering"] }}<br/>
                         {% if rec["dep_type"] == "MTM" %}
                             <a href="{{ url_for("hierarchy", acnr=rec["network_id"]) }}" target="_blank">{{ rec["dep_type"] }}</a>
                         {% else %}
@@ -18,12 +20,21 @@
                     <td colspan="2">{{ rec["title"] }}</td>
                 </tr>
                 <tr>
-                    <td>Ausgabebezeichnung: {% if rec["edition"] %} {{ rec["edition"] }} {% else %} --- {% endif %}</td>
+                    <!--
                     <td>Erscheinungsdatum: {{ rec["date"] }}</td>
+                    <td>Ausgabebezeichnung: {% if rec["edition"] %} {{ rec["edition"] }} {% else %} --- {% endif %}</td>
+                    -->
+                    <td>{{ rec["date"] }}</td>
+                    <td>{% if rec["edition"] %} {{ rec["edition"] }} {% else %} --- {% endif %}</td>
                 </tr>
                 <tr class="end_entry">
-                    <td>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ rec["network_id"] }}" target="_blank">{{ rec["network_id"] }}</a></td>
-                    <td>Lokaler Bestand vorhanden ({{ session["institution_code"] }}): {% if rec["has_holdings"] %} JA {% else %} NEIN {% endif %}</td>
+                    <!-- <td>Netzwerk-ID: <a href="https://permalink.obvsg.at/{{ rec["network_id"] }}" target="_blank">{{ rec["network_id"] }}</a></td> -->
+                    <td>{{ rec["network_id"] }}</td>
+                        {% if rec["has_holdings"] %}
+                            <td>Lokaler Bestand vorhanden ({{ session["institution_code"] }}): <b>JA</b> </td>
+                        {% else %} 
+                            <td>Lokaler Bestand vorhanden ({{ session["institution_code"] }}): <b>NEIN</b> </td>
+                        {% endif %}
                 </tr>
             {% endfor %}
         </table>
