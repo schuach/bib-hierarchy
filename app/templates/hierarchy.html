@@ -9,7 +9,10 @@
         <table>
             {% for rec in hierarchy[1:] %}
             <tr class="start_entry">
-                <td rowspan="3" style="background-color:{% if rec["has_holdings"] %}#81F781{% else %}#F5A9A9;{% endif %}">
+                <td rowspan="3" style="background-color:{% if rec["has_holdings"] %}#81F781
+                    {% elif rec["dep_type"] == "MTM" %}#FF9900;
+                    {% else %}#F5A9A9;
+                    {% endif %}">
                     {{ rec["numbering"] }}<br/>
                         {% if rec["dep_type"] == "MTM" %}
                             <a href="{{ url_for("hierarchy", acnr=rec["network_id"]) }}" target="_blank">{{ rec["dep_type"] }}</a>
