@@ -76,3 +76,8 @@ border: 1px solid #e5e5e5;
 .start_entry td {
 border-top: 2px solid black;
 }
+
+#footer {   
+    position:fixed;
+    bottom:0%;
+}

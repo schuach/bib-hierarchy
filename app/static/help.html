@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Hilfe</title>
+    <link rel="stylesheet" href="stylesheet.css" </head>
+
+<body>
+    <h1>Hilfe zu BIB-HIERARCHY</h1>
+
+    <p>
+        Hier können Sie sich eine bibliografische Hierarchie aus (nicht in) Alma
+        anzeigen lassen.
+    </p>
+
+    <h2>Benutzung</h2>
+
+    <p>
+        Die Benutung dieser Applikation ist denkbar einfach: Sie kopieren die
+        AC-Nummer der Überordnung (MTM-Kopf oder monografische Reihe) in das Feld
+        <em>AC-Nummer</em> und wählen aus dem Dropdown Ihre Bibliothek. Nach dem Klick
+        auf <em>Hierarchie anzeigen</em>, kann es ein wenig dauern, bis es
+        tatsächlich zu einer Anzeige kommt. Das kommt darauf an, wie groß die
+        Hierarchie ist.
+    </p>
+
+    <h2>Output</h2>
+    <h3>Sortierung</h3>
+    <p>
+        Die Treffer werden nach nach <code>MARC 773 $$q</code> bzw. <code>MARC 830 $$v</code> sortiert.
+        TUTs und TATs werden in der Sortierung nicht unterschieden. Wenn es sowohl
+        TUTs als auch TATs in einer Hierarchie gibt, fügen sie sich in dieselbe
+        Ordnung ein.
+    </p>
+
+    <h3>Mehrteilige Monografien in Schriftenreihen</h3>
+    <p>
+        Die Kopfsätze mehrteiliger Monografien sortieren wie auch alle anderen Datensätze.
+        Unter bei springender Zählung eben unter "...".
+    </p>
+    <p>
+        Durch Klicken auf den Link <em>MTM</em> wird die Hierarchie ausgehend von der mehrteiligen
+        Monografie abgerufen.
+    </p>
+
+    <h3>Verfügbarkeit</h3>
+    <p>
+        Die Verfügbarkeit eines Datensätzes in der ausgewählten Bibliothek wird nach einem Ampelsystem dargestellt:
+
+    <dl>
+        <dt>rot</dt>
+        <dd>Zu diesem Datensatz gibt es kein Holding in der ausgewählten IZ.</dd>
+        <dt>grün</dt>
+        <dd>Zu diesem Datensatz gibt es mindestens ein nicht unterdrücktes Holding in der ausgewählten IZ.</dd>
+        <dt>orange</dt>
+        <dd>Dieser Datensatz ist als MTM-Kopfsatz codiert. Nachdem MTMs normalerweise keine Holdings am Kopfsatz haben, kann BIB-HIERARCHY nicht festsellen, ob es diesen Datensatz in der ausgewählten IZ gibt.</dd>
+    </dl>
+    </p>
+
+</body>
+
+</html>
