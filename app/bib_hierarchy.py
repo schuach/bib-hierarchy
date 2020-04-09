@@ -31,6 +31,7 @@ class BibHierarchy (object):
         # get the records from Alma
         offset = 1
         sru_request = "https://obv-at-obvsg.alma.exlibrisgroup.com/view/sru/43ACC_NETWORK?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=other_system_number={acnr}&startRecord={offset}&maximumRecords=50"
+        # sru_request = "https://obv-at-obvsg.alma.exlibrisgroup.com/view/sru/43ACC_UBG?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=other_system_number={acnr}&startRecord={offset}&maximumRecords=50"
 
         # get the first 50 records
         res = requests.get(sru_request.format(acnr=acnr, offset=offset))
