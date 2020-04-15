@@ -8,10 +8,11 @@ class GetACForm(FlaskForm):
         ("43ACC_UBW", "Universitätsbibliothek Wien"),
         ("43ACC_UBI", "Universitätsbibliothek Innsbruck"),
         ("43ACC_ONB", "Österreichische Nationalbibliothek"),
+        ("43ACC_UBBW", "Universitätsbibliothek Bodenkultur Wien"),
+        ("43ACC_UBK", "Universitätsbibliothek Klagenfurt"),
+        ("43ACC_TUG", "Technische Universität Graz"),
         ("43ACC_C02", "FH Campus 02"),
         ("43ACC_VBK", "VBK"),
-        ("43ACC_TUG", "Technische Universität Graz"),
-        ("43ACC_UBK", "Universitätsbibliothek Klagenfurt"),
         ("43ACC_OOELB", "LBO"),
         ]
     acnr = StringField("AC-Nummer: ", validators=[DataRequired()])
