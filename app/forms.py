@@ -20,6 +20,7 @@ class GetACForm(FlaskForm):
         ("43ACC_LMK", "Kärntner Landesbibliothek"),
         ("43ACC_FHB", "Fachhochschule Burgenland"),
         ("43ACC_WIENB", "Wienbibliothek im Rathaus"),
+        ("43ACC_TUW", "TU Wien"),
         ]
     acnr = StringField("AC-Nummer: ", validators=[DataRequired()])
     institution_code = SelectField("Institution: ", choices=institutions)
