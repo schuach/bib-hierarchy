@@ -17,7 +17,7 @@ class GetACForm(FlaskForm):
         ("43ACC_OOELB", "LBO"),
         ("43ACC_WUW", "Wirtschaftsuniversität Wien"),
         ("43ACC_OEAW", "ÖAW"),
-        ("43ACC_LMK", "Kärntner Landesbibliothek"),
+        ("43ACC_KLK", "Kärntner Landesbibliothek"),
         ("43ACC_FHB", "Fachhochschule Burgenland"),
         ("43ACC_WIENB", "Wienbibliothek im Rathaus"),
         ("43ACC_TUW", "TU Wien"),
