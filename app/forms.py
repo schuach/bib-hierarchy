@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
+
 class GetACForm(FlaskForm):
     institutions = [
         ("43ACC_UBG", "Universitätsbibliothek Graz"),
@@ -22,7 +23,8 @@ class GetACForm(FlaskForm):
         ("43ACC_WIENB", "Wienbibliothek im Rathaus"),
         ("43ACC_TUW", "TU Wien"),
         ("43ACC_GDFS", "Campusbibliotheken St. Pölten"),
-        ]
+        ("43ACC_UBL", "Universitätsbibliothek Linz"),
+    ]
     acnr = StringField("AC-Nummer: ", validators=[DataRequired()])
     institution_code = SelectField("Institution: ", choices=institutions)
     submit = SubmitField("Hierarchie anzeigen")
