@@ -87,18 +87,18 @@ class BibHierarchy (object):
                 # get the sorting from 773 if it's a dependent title
                 for field in rec.get_fields("773"):
                     if self.acnr in field.value():
-                        if field["q"] == None:
-                            field.add_subfield("q", "ZZZ - Keine Sortieform vorhanden")
-                        else:
+                        if field["q"]:
                             order.append((field["q"], year, field_009, rec))
+                        else:
+                            order.append(("???", year, field_009, rec))
 
                 # get the sorting from 830 if it's an independent title
                 for field in rec.get_fields("830"):
                     if self.acnr in field.value():
-                        if field["v"] == None:
-                            field.add_subfield("v", "ZZZ - Keine Sortieform vorhanden")
-                        else:
+                        if field["v"]:
                             order.append((field["v"], year, field_009, rec))
+                        else:
+                            order.append(("???" , year, field_009, rec))
 
         return head, natsort.natsorted(order)
 
