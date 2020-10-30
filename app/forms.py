@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, BooleanField
 from wtforms.validators import DataRequired
 
 
@@ -31,4 +31,5 @@ class GetACForm(FlaskForm):
     ]
     acnr = StringField("AC-Nummer: ", validators=[DataRequired()])
     institution_code = SelectField("Institution: ", choices=institutions)
+    sandbox = BooleanField("Sandbox")
     submit = SubmitField("Hierarchie anzeigen")

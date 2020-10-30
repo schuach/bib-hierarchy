@@ -12,7 +12,9 @@
         <p>
             {{ form.acnr.label }}<br/>
             {{ form.acnr(size=12) }}<br/>
-            {{ form.institution_code }} {{ form.submit() }}
+            {{ form.institution_code }}<br/>
+            Sandbox: {{ form.sandbox }}<br/>
+            {{ form.submit() }}
         </p>
     </form>
 {% endblock %}

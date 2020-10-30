@@ -14,6 +14,7 @@ def index():
     if form.validate_on_submit():
         acnr = form.acnr.data.strip()
         session['institution_code'] = form.institution_code.data
+        session['sandbox'] = form.sandbox.data
         print(acnr)
         return redirect(url_for("hierarchy", acnr=acnr))
     return render_template("index.html", title="Bitte AC-Nummer eingeben", form=form, message=message)
@@ -26,7 +27,12 @@ def hierarchy():
     else:
         institution_code = session["institution_code"]
 
-    hierarchy = bib_hierarchy.BibHierarchy(acnr, institution_code)
+    if session["sandbox"]:
+        sandbox = session["sandbox"]
+    else:
+        sandbox = False
+
+    hierarchy = bib_hierarchy.BibHierarchy(acnr, institution_code, sandbox)
 
     if hierarchy.records is None:
         message = f'Die Suche nach "{acnr}" erbrachte keine Ergebnisse. Haben Sie sich vielleicht vertippt?'

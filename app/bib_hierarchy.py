@@ -5,11 +5,13 @@ import requests
 import pymarc
 import natsort
 
-class BibHierarchy (object):
 
-    def __init__(self, acnr, institution_code="43ACC_UBG"):
+class BibHierarchy(object):
+
+    def __init__(self, acnr, institution_code="43ACC_UBG", sandbox=False):
         self.acnr = acnr
         self.institution_code = institution_code
+        self.sandbox = sandbox
         self.records = self.__get_records(acnr)
         if self.records:
             self.head, self.deps = self.__build_hierarchy(self.records)
@@ -30,7 +32,10 @@ class BibHierarchy (object):
 
         # get the records from Alma
         offset = 1
-        sru_request = "https://obv-at-obvsg.alma.exlibrisgroup.com/view/sru/43ACC_NETWORK?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=other_system_number={acnr}&startRecord={offset}&maximumRecords=50"
+        if self.sandbox:
+            sru_request = "https://obv-at-obvsg-psb.alma.exlibrisgroup.com/view/sru/43ACC_NETWORK?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=other_system_number={acnr}&startRecord={offset}&maximumRecords=50"
+        else:
+            sru_request = "https://obv-at-obvsg.alma.exlibrisgroup.com/view/sru/43ACC_NETWORK?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=other_system_number={acnr}&startRecord={offset}&maximumRecords=50"
         # sru_request = "https://obv-at-obvsg.alma.exlibrisgroup.com/view/sru/43ACC_UBG?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=other_system_number={acnr}&startRecord={offset}&maximumRecords=50"
 
         # get the first 50 records
@@ -67,7 +72,6 @@ class BibHierarchy (object):
 
         return pymarc_records
 
-
     def __build_hierarchy(self, record_list):
         """Return a tuple with the head of the hierarchy and the
         dependent records as a list.
@@ -98,10 +102,9 @@ class BibHierarchy (object):
                         if field["v"]:
                             order.append((field["v"], year, field_009, rec))
                         else:
-                            order.append(("???" , year, field_009, rec))
+                            order.append(("???", year, field_009, rec))
 
         return head, natsort.natsorted(order)
-
 
     # helper functions
     def __check_rectype(self, record):
@@ -237,6 +240,7 @@ class BibHierarchy (object):
         """
 
         lst = []
+
         # head = ("head", year, field_009, rec)
         def build_dict(self, rec):
             dct = {}
@@ -267,4 +271,3 @@ class BibHierarchy (object):
             lst.append(build_dict(self, rec))
 
         return lst
-
