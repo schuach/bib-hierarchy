@@ -4,4 +4,4 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 
-from app import routes, bib_hierarchy
+from app import routes

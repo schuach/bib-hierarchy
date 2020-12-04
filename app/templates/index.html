@@ -1,20 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Bitte AC-Nummer des Kopfsatzes eingeben</h1>
+<h1>Bib-Hierarchy</h1>
 
-    {% if message %}
-    <p>{{ message }}</p>
-    {% endif %}
+Diese Applikation gibt es hier nicht mehr. Aber zagen Sie nicht - die UB Wien hat etwas besseres!
 
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.acnr.label }}<br/>
-            {{ form.acnr(size=12) }}<br/>
-            {{ form.institution_code }}<br/>
-            Sandbox: {{ form.sandbox }}<br/>
-            {{ form.submit() }}
-        </p>
-    </form>
+<a href="https://bibdata.univie.ac.at/bib-hierarchy/">Klicken Sie hier, um zum Hierarchie-Tool der UBW zu gelangen.</a>
+
 {% endblock %}
