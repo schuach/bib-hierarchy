@@ -10,6 +10,15 @@
 #+OPTIONS: author:nil creator:nil email:nil date:t
 #+MACRO: teaser #+RST: .. TEASER_END
 
+* Alternativen
+  Es gibt eine (vermutlich deutlich professionellere) Implementierung dieser Funktionalität von [[https:https://github.com/gabriele-h][gabriele-h]] von der Universitätsbibliothek Wien, die auch aktiv gepflegt wird:
+
+  [[https:https://github.com/gabriele-h/bib-hierarchy]]
+
+
+  Für Endbenutzer:
+  [[https:https://bibdata.univie.ac.at/bib-hierarchy/]]
+
 * Allgemeines
 Die Anzeige von bibliografischen Hierarchien ist in Alma nicht gut möglich.
 Nachdem die Daten aber da sind, kann man diese Anzeige selbst erstellen, indem
