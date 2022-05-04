@@ -11,13 +11,13 @@
 #+MACRO: teaser #+RST: .. TEASER_END
 
 * Alternativen
-  Es gibt eine (vermutlich deutlich professionellere) Implementierung dieser Funktionalität von [[https:https://github.com/gabriele-h][gabriele-h]] von der Universitätsbibliothek Wien, die auch aktiv gepflegt wird:
+  Es gibt eine (vermutlich deutlich professionellere) Implementierung dieser Funktionalität von [[https://github.com/gabriele-h][gabriele-h]] von der Universitätsbibliothek Wien, die auch aktiv gepflegt wird:
 
-  [[https:https://github.com/gabriele-h/bib-hierarchy]]
+  [[https://github.com/gabriele-h/bib-hierarchy]]
 
 
   Für Endbenutzer:
-  [[https:https://bibdata.univie.ac.at/bib-hierarchy/]]
+  [[https://bibdata.univie.ac.at/bib-hierarchy/]]
 
 * Allgemeines
 Die Anzeige von bibliografischen Hierarchien ist in Alma nicht gut möglich.
