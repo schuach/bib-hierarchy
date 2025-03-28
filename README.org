@@ -11,13 +11,16 @@
 #+MACRO: teaser #+RST: .. TEASER_END
 
 * Alternativen
+  Dieses Projekt war nur als proof of concept gedacht und wird nicht mehr gewartet.
+
   Es gibt eine (vermutlich deutlich professionellere) Implementierung dieser Funktionalität von [[https://github.com/gabriele-h][gabriele-h]] von der Universitätsbibliothek Wien, die auch aktiv gepflegt wird:
 
   [[https://github.com/gabriele-h/bib-hierarchy]]
 
-
   Für Endbenutzer:
   [[https://bibdata.univie.ac.at/bib-hierarchy/]]
+
+  Es gibt inzwischen auch eine Alma CloudApp: https://github.com/HSG-Library/alma-bib-hierarchy
 
 * Allgemeines
 Die Anzeige von bibliografischen Hierarchien ist in Alma nicht gut möglich.
